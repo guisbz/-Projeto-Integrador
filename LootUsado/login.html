@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bau geek</title>
+    <link rel="stylesheet" href="login.css">
+<body>
+    <main>
+        <form action="processar_login.php" method="POST">
+        <p>
+            <p>
+                <label for="Email" required> Usuário ou Email: </label>
+            </p>
+            <p class="bar">
+                <input type="email" required>
+            </p>
+            <p>
+                <label for="password">Senha:</label>
+            </p>
+            <p class="bar">
+            <input type="password" id="password" required>
+            <span class="toggle-password" onclick="mostrarSenha()">👁️</span>
+            </p>
+        </p>
+        <p>
+            <button id="fix">Entrar</button>
+        </p>
+        <p class="center">
+            <a href="forgot.html">Esqueçi minha senha</a>
+        </p>
+        <p class="center">Não tem uma conta?<a href="subscribe.html" id="underline"> Inscreva-se!</a></p>
+        
+        </form>
+    </main>
+
+    <footer>
+        <p>created by urubu do pix ©</p>
+    </footer>
+    <script>
+        function mostrarSenha(element) {
+            const senhaInput = document.getElementById("senha");
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+                element.textContent = "🙈";
+            } else {
+                senhaInput.type = "password";
+                element.textContent = "👁️"; 
+            }
+        }
+</script>
+</body>
+</html>
