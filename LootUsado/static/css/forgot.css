@@ -1,18 +1,13 @@
-@charset "UTF-8";
-html,body{
+body{
     height: 100%;
     margin: 0;
     border: 0;
     padding: 0;
-    
-}
-body{
-    
     background: linear-gradient(to top,#560292 100%, rgba(24, 2, 43, 0.932) );
     font-family: Arial, sans-serif;
 }
 main{
-    height: 450px;
+    height: 400px;
     width: 400px;
     background-color: #6F00BF;
     margin-left:  auto;
@@ -21,15 +16,35 @@ main{
     border-radius: 20px;
     color: aliceblue;
     font-weight: bolder;
-}
-main{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
-
-#fix{
+.espacamento {
+   
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+input{
+    width: 280px;
+    height: 25px;
+    border-radius: 2px;
+    border: 0;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    margin-right: 5px;
+    margin-left: 35px;
+    background-color: rgb(250, 249, 249);
+    text-align: center;
+    margin-right: 30px;
+}
+#botao-entrar{
     display: block;
     margin: 0 auto;
     padding-top: 12px;
@@ -45,29 +60,21 @@ main{
     margin-top: 20px;
     
 }
-label{
-    margin-left: 35px;
-}
-input{
-    width: 280px;
-    height: 25px;
-    border-radius: 2px;
-    border: 0;
-    font-size: 16px;
-    font-weight: bold;
-    font-family: Arial, sans-serif;
-    background-color: rgb(250, 249, 249);
-    text-align: center;
-    margin-right: 5px;
-    margin-left: 35px;
-}
-#unique{
-    text-decoration: underline;
+#botao-entrar:hover {
+    background-color: rgb(108, 28, 155);
+    cursor: pointer;
+    
 }
 
-a{
-    color:aliceblue
+#fix{
+    color: white;
 }
-a:hover{
+
+#fix:hover{
     color: #491970;
+}
+.creditos{
+    text-align: center;
+    color: aliceblue;
+    text-decoration: underline;
 }
