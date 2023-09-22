@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loot Usado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+<body>
+    <main>
+        <div class="formulario">
+            <form class="formulario-login" action="login" method="POST">
+                <label class="label" for="Email" required> Usuário ou Email: </label>
+        
+            <div class="espacamento">
+                <input name="nome" type="text" required>
+            </div class="espacamento">
+
+            <div class="espacamento">
+                <label class="label" for="password">Senha:</label>
+            </div>
+            <div class="espacamento">
+                <input type="password" id="password" required>
+                <span class="toggle-password" onclick="mostrarSenha()">👁️</span>
+            </div class="espacamento">
+        
+
+                <button id="botao-entrar">Entrar</button>
+           
+
+            <div class="centralizar">
+                 <a class="centralizar" href="forgot.html">Esqueci minha senha</a>
+            </div>
+
+            <div class="centralizar">Não tem uma conta?<a href="subscribe.html" id="link"> Inscreva-se!</a></div>
+        
+        </form>
+        </div>
+    </main>
+    <footer>
+        
+        <div class="creditos">
+            <p>created by urubu do pix ©</p>
+        </div>
+    </footer>
+
+
+    <script>
+        function mostrarSenha(element) {
+            const senhaInput = document.getElementById("senha");
+            if (senhaInput.type === "password") {
+                senhaInput.type = "text";
+                element.textContent = "🙈";
+            } else {
+                senhaInput.type = "password";
+                element.textContent = "👁️"; 
+            }
+        }
+</script>
+</body>
+</html>

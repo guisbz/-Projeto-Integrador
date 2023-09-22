@@ -1,17 +1,21 @@
 @charset "UTF-8";
-html,body{
+body{
     height: 100%;
     margin: 0;
     border: 0;
     padding: 0;
-    
-}
-body{
-    
     background: linear-gradient(to top,#560292 100%, rgba(24, 2, 43, 0.932) );
     font-family: Arial, sans-serif;
+    
 }
-main{
+
+.formulario-login {
+    display: block;
+    margin-top: 1em;
+
+}
+
+div.formulario{
     height: 450px;
     width: 400px;
     background-color: #6F00BF;
@@ -21,15 +25,24 @@ main{
     border-radius: 20px;
     color: aliceblue;
     font-weight: bolder;
-}
-main{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#fix{
+
+.espacamento {
+   
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+    
+}
+
+#botao-entrar{
     display: block;
     margin: 0 auto;
     padding-top: 12px;
@@ -45,13 +58,19 @@ main{
     margin-top: 20px;
     
 }
-.center{
+
+#botao-entrar:hover {
+    background-color: rgb(108, 28, 155);
+    cursor: pointer;
+    
+}
+.centralizar{
     text-align: center;
     border: 0;
     margin-top: 10px;
     margin-bottom: 5px;
 }
-label{
+.label{
     margin-left: 35px;
 }
 input{
@@ -76,13 +95,15 @@ a{
     text-decoration: none;
 }
 
-#underline{
+#link{
     text-decoration: underline;
 }
 a:hover{
     color: #491970;
+    text-decoration: underline;
+
 }
-footer{
+.creditos{
     text-align: center;
     color: aliceblue;
     text-decoration: underline;
