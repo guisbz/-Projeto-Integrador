@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, flash, redirect
 import json
 import os
 
+from flask.json import jsonify
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY']= "PALAVRA-SECRETA"
@@ -31,9 +33,27 @@ def cadastro():
             json.dump(lista, usuarios, indent=4)
 
         flash('Registro realizado com sucesso. Faça o login.')
+       
         return redirect("/")
     
     return render_template("html/cadastro.html")
+
+@app.route('/register', methods=['POST'])
+def register():
+    usuarios = {
+        "nome": request.form.get('nome'),
+        "senha": request.form.get('senha'),
+    }
+
+    if all(usuarios.values()):
+        with open('usuarios.json', 'a') as file:
+            file.write(json.dumps(usuarios) + '\n')
+
+        return jsonify({"message": "Dados recebidos com sucesso!"})
+    else:
+        return jsonify({"error": "Todos os campos são obrigatórios!"})
+
+    return jsonify({"message": "Dados recebidos com sucesso!"})
 
 @app.route("/")
 def home():

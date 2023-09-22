@@ -1,19 +1,21 @@
-<!-- register.html -->
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <!-- Adicione as meta tags e os links para CSS, se necessário -->
+
     <title>Cadastro</title>
+    <link rel="stylesheet" href=" url_for('static', filename='login.css')">
+    <link rel="stylesheet" href="../../static/css/login.css">
 </head>
 <body>
     <main>
         <div class="formulario">
             <form class="formulario-registro" action="/register" method="POST">
-                <label class="label" for="novo-usuario">Novo Usuário:</label>
-                <input name="novo-usuario" type="text" placeholder="Digite o nome de usuário" required>
+                <label class="label" for="nome">Novo Usuário:</label>
+                <input id="nome" name="nome" type="text" placeholder="Digite o nome de usuário" required>
                 
-                <label class="label" for="nova-senha">Nova Senha:</label>
-                <input name="nova-senha" type="password" placeholder="Digite a senha" required>
+                <label class="label" for="senha">Nova Senha:</label>
+                <input id="senha" name="senha" type="password" placeholder="Digite a senha" required>
 
                 <button type="submit" id="botao-registrar" value="registrar">Registrar</button>
             </form>
