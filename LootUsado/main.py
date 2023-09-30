@@ -4,7 +4,6 @@ import os
 
 from flask.json import jsonify
 
-
 app = Flask(__name__)
 app.config['SECRET_KEY']= "PALAVRA-SECRETA"
 
@@ -71,6 +70,35 @@ def register():
 @app.route("/")
 def home():
     return render_template("html/login.html")
+    
+@app.route("/recuperarsenha")
+def recuperarsenha():
+    return render_template("html/recuperarsenha.html")
+
+@app.route("/cart")
+def cart():
+    return render_template("html/cart.html")
+
+@app.route("/checkout")
+def checkout():
+    return render_template("html/checkout.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("html/contact.html")
+
+@app.route("/detail")
+def detail():
+    return render_template("html/detail.html")
+
+@app.route("/index")
+def index():
+    return render_template("html/index.html")
+
+@app.route("/shop")
+def shop():
+    return redirect("html/shop.html")
+
 
 @app.route("/login", methods=['POST'])
 def login():
@@ -83,7 +111,7 @@ def login():
         for c in lista:
             cont+=1
             if usuario == c['nome'] and senha == c['senha']:
-                return render_template("html/acesso.html", nomeUsuario=c['nome'])
+                return render_template("html/index.html", nomeUsuario=c['nome'])
             if cont >= len(lista):
                 flash('usuario invalido')
                 return redirect("/")
@@ -91,7 +119,5 @@ def login():
     print(senha)
 
     
-
-
 if __name__ in '__main__':
     app.run(debug=True)
