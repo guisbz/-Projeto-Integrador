@@ -15,9 +15,9 @@ class Setup_DB:
         self.host = host
         self.user = user
         self.password = password
-        self.db_name = db_name
+        self.db_name = "users"
 
-        self.db_con = self.db_connection()
+        # self.db_con = self.db_connection()
 
     def db_connection(self):
         try:
@@ -27,20 +27,27 @@ class Setup_DB:
                 password=self.password
             )
 
+            print("Conectado com o Banco MySQL")
+            return db_con
         except Error as e:
             print("ERRO:", e)
             exit(1)
 
     def create_database(self):
         try:
-            create_db_query = f"CREATE DATABASE {self.db_name}"
-            cursor = self.db_con.cursor()
-            cursor.execute(create_db_query)
+            with connect(host=self.host,user=self.user,password=self.password) as db_con:
+                create_db_query = f"CREATE DATABASE {self.db_name}"
+                # print(db_con)
+                with db_con.cursor() as cursor:
+                    cursor.execute(create_db_query)
+
+                print(f"Database {self.db_name} criada")
         except Error as e:
             if e.errno == errorcode.ER_DB_CREATE_EXISTS:
-                print(f"Database {self.db_name} já criada")
-            print("Error:", e)
-            exit(1)
+                print(f"Database {self.db_name} já existe")
+            else:
+                print("Error:", e)
+                exit(1)
 
     def create_tables(self):
         query = f"""
@@ -57,8 +64,12 @@ class Setup_DB:
         """        
 
         try:
-            cursor = self.db_con.cursor()
-            cursor.execute(query)
+            with connect(host=self.host,user=self.user,password=self.password) as db_con:
+                # print(db_con)
+                with db_con.cursor() as cursor:
+                    cursor.execute(query)
+
+                print("A tabela users foi criada")
 
         except Error as e:
             if e.errno == errorcode.ER_TABLE_EXISTS_ERROR:
@@ -68,7 +79,20 @@ class Setup_DB:
                 exit(1)
 
                 
+if __name__ == "__main__":
+    host=os.getenv("host")
+    user=os.getenv("user")
+    password=os.getenv("password")
+    db_name=os.getenv("db_name")
 
-setup_db_obj = Setup_DB(host=os.getenv("host"), user=os.getenv("user"), password=os.get_env("password"), db_name=os.get_env("db_name"))
-setup_db_obj.create_database()
-setup_db_obj.create_tables()
+    print("host:", host)
+    print("user:", user)
+    print("password:", password)
+    print("db_name:", db_name)
+
+    setup_db_obj = Setup_DB(host=host ,user=user ,password=password ,db_name=db_name)
+    setup_db_obj.create_database()
+    setup_db_obj.create_tables()
+
+    # with connect(host=host,user=user,password=password) as db_con:
+    #     print(db_con)
