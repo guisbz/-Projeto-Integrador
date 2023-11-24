@@ -6,42 +6,52 @@ from marshmallow import fields
 from app.services.crud_services import cadastrar, login
 
 class Cadastro(MethodResource, Resource):
-    def __init__(self, json_path):
-        self.json_path = json_path
+    def __init__(self, db):
+        self.db = db
 
 
     @use_kwargs(
         {
          "nome": fields.Str(),
-         "senha": fields.Str()   
+         "senha": fields.Str(),
+         "user": fields.Str(),
+         "email": fields.Str()
         }
     )
     def post(self, **kwargs):
         nome = kwargs.get("nome")
         senha = kwargs.get("senha")
 
-        if nome and senha:
-            return cadastrar(nome, senha, self.json_path)
+        nome = kwargs.get("nome")
+        senha = kwargs.get("senha")
+        user = kwargs.get("user")
+        email = kwargs.get("email")
+
+
+
+
+        if user and senha:
+            return cadastrar(db_con=self.db, nome=nome,senha=senha,user=user,email=email)
         else:
             return {"status": 0, "message": "Nome e Senha Nula", "error code": 4}
         
     
 class Login(MethodResource, Resource):
-    def __init__(self, json_path):
-        self.json_path = json_path
+    def __init__(self, db):
+        self.db = db
 
     @use_kwargs(
         {
-         "nome": fields.Str(),
+         "user": fields.Str(),
          "senha": fields.Str()   
         }
     )
     def post(self, **kwargs):
-        nome = kwargs.get("nome")
+        user = kwargs.get("user")
         senha = kwargs.get("senha")
 
-        if nome and senha:
-            return login(nome, senha, self.json_path)
+        if user and senha:
+            return login(self.db, user, senha)
         else:
             return {"status": 0, "message": "Nome e Senha Nula", "error code": 4}
 
