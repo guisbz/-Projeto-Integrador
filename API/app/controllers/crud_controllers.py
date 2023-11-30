@@ -51,7 +51,7 @@ class Login(MethodResource, Resource):
         senha = kwargs.get("senha")
 
         if user and senha:
-            return login(self.db, user, senha)
+            return {"status": 1, "value": int(login(self.db, user, senha))}
         else:
             return {"status": 0, "message": "Nome e Senha Nula", "error code": 4}
 
